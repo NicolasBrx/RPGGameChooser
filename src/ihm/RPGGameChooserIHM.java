@@ -43,6 +43,7 @@ public class RPGGameChooserIHM extends javax.swing.JFrame {
   */  
   public void setGameNames(HashMap<String,ArrayList<String>> toAdd){
     gameNames = toAdd;
+    jcbbGameChoice.addItem("");
     for(String game : gameNames.keySet()){
       jcbbGameChoice.addItem(game);
     }
