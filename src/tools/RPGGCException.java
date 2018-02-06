@@ -23,7 +23,7 @@ public class RPGGCException extends Exception {
    * @param message The exception message hard coded.
    */
   public RPGGCException(String message) {
-    super(message);
+    super("Error on Game Chooser: " + message);
   }
 
   /**
@@ -34,6 +34,6 @@ public class RPGGCException extends Exception {
    * @param throwable The hard coded fact that the message is throwable or not.
    */
   public RPGGCException(String message, Throwable throwable) {
-    super(message, throwable);
+    super("Error on Game Chooser: " + message, throwable);
   }
 }

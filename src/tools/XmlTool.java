@@ -48,15 +48,16 @@ public class XmlTool {
   /****************************************************************************/
   
   /**
-   * This method provides a list of all the scenario stored in the save folder.
-   * Each file is named after the title of the scenario so the file name is 
-   * then deconstructed in order to provide the right scenario name.
+   * This method provides a list of all the games that can be choosen and are
+   * usable into the RPG Software Suit.
    * 
-   * @return An array list containing all the scenario in the save folder.
+   * @return An HashMap Containing each game and its description plus a 
+   *          short name for reference.
+   * @throws tools.RPGGCException Exception thrown when the xml document
+   *                               containing the game names is not readable.
    */
-  public HashMap<String,ArrayList<String>> getAllGames(){
+  public HashMap<String,ArrayList<String>> getAllGames() throws RPGGCException{
     HashMap<String,ArrayList<String>> toReturn = new HashMap<>();
-    
     File inputFile = new File(dataPath);
     
     /* XML BLOCK */
@@ -71,8 +72,10 @@ public class XmlTool {
         tmp.add(game.getChildText("description"));
         toReturn.put(tmp.get(0),tmp);
       }//for
-    }catch(JDOMException | IOException e){
-      e.printStackTrace();
+    }catch(IOException e){
+      throw new RPGGCException("Can't find or read the file.");
+    }catch(JDOMException e){
+      throw new RPGGCException("XML is ill-formatted.");
     }//catch
     /* END of XML BLOCK */
     

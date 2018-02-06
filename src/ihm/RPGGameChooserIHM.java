@@ -1,36 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ihm;
 
 import game.Game;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.ImageIcon;
-import tools.XmlTool;
 
 
 /**
- *
+ * User Interface Class to handle the choice of a game in the RPG Software Suit.
+ * It allows the user to select a game, see a quick description and set its
+ * choice foruse in other plugins.
+ * 
  * @author Nicolas Brax
  */
 public class RPGGameChooserIHM extends javax.swing.JFrame {
   
   private Game choosenGame;
+  
+  private HashMap<String,ArrayList<String>> gameNames = new HashMap<>();
 
   /**
    * Creates new form RPGGameChooser
    */
-  public RPGGameChooserIHM() {
+  public RPGGameChooserIHM(){
     initComponents();
-    
-    XmlTool xml = new XmlTool();
-    jcbbGameChoice.addItem("");
-    for(String game : xml.getAllGames().keySet()){
-      jcbbGameChoice.addItem(game);
-    }
     
     this.setTitle("RPG Game Chooser v.1.0.0");
     URL iconURL = getClass().getResource("favicon.png");
@@ -39,6 +33,28 @@ public class RPGGameChooserIHM extends javax.swing.JFrame {
     
     this.setSize(324,100);
     
+  }
+
+  /**
+   * This method initialise the map containing the game names and description
+   * to the one given as a parameters. It also fills the list of the combobox.
+   * 
+   * @param toAdd The reference HashMap.
+  */  
+  public void setGameNames(HashMap<String,ArrayList<String>> toAdd){
+    gameNames = toAdd;
+    for(String game : gameNames.keySet()){
+      jcbbGameChoice.addItem(game);
+    }
+  }
+  
+  /**
+   * Return the game choosen by the user, set when load is clicked.
+   * 
+   * @return The choosen Game.
+   */
+  public Game getChoosenGame(){
+    return this.choosenGame;
   }
 
   /**
@@ -135,19 +151,17 @@ public class RPGGameChooserIHM extends javax.swing.JFrame {
   }//GEN-LAST:event_jbtnQuitActionPerformed
 
   private void jbtnChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnChooseActionPerformed
-    XmlTool xml = new XmlTool();
     ArrayList<String> tmp = new ArrayList<>();
-    tmp.addAll(xml.getAllGames().get((String)jcbbGameChoice.getSelectedItem()));
+    tmp.addAll(gameNames.get((String)jcbbGameChoice.getSelectedItem()));
     this.choosenGame = new Game(tmp.get(0),tmp.get(1),tmp.get(2));
   }//GEN-LAST:event_jbtnChooseActionPerformed
 
   private void jcbbGameChoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbbGameChoiceActionPerformed
     if(!((String)jcbbGameChoice.getSelectedItem()).equalsIgnoreCase("")){
       this.setSize(324,274);
-      XmlTool xml = new XmlTool();
       if(jcbDescription.isSelected()){
         final String html1 = "<html><body style='width:225px'>";
-        final String toDisplay = xml.getAllGames().get((String)jcbbGameChoice.getSelectedItem()).get(2);
+        final String toDisplay = gameNames.get((String)jcbbGameChoice.getSelectedItem()).get(2);
         jlblDescription.setText(html1 + toDisplay);
       }
       else{
@@ -165,9 +179,8 @@ public class RPGGameChooserIHM extends javax.swing.JFrame {
     if(!((String)jcbbGameChoice.getSelectedItem()).equalsIgnoreCase("")){
       if(jcbDescription.isSelected()){
         this.setSize(324,274);
-        XmlTool xml = new XmlTool();
         final String html1 = "<html><body style='width:225px'>";
-        final String toDisplay = xml.getAllGames().get((String)jcbbGameChoice.getSelectedItem()).get(2);
+        final String toDisplay = gameNames.get((String)jcbbGameChoice.getSelectedItem()).get(2);
         jlblDescription.setText(html1 + toDisplay);
       }
       else{
@@ -225,4 +238,18 @@ public class RPGGameChooserIHM extends javax.swing.JFrame {
   private javax.swing.JLabel jlblDescription;
   // End of variables declaration//GEN-END:variables
 
+  /**
+   * Overrided methd to enable or disable the user interface elements
+   * in order to prevent user interactions.
+   * 
+   * @param enabled True to enable, false to disable.
+   */
+  @Override
+  public void setEnabled(boolean enabled){
+    jcbbGameChoice.setEnabled(enabled);
+    jcbDescription.setEnabled(enabled);
+    jbtnQuit.setEnabled(enabled);
+    jbtnChoose.setEnabled(enabled);
+  }
+  
  }
