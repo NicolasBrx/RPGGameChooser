@@ -55,6 +55,14 @@ public class RPGGameChooser {
   }
   
   /**
+   * 
+   * @return 
+   */
+  public RPGGameChooserIHM getMainFrame(){
+    return ihm;
+  }
+  
+  /**
    * Give the game choosen by the user. 
    * 
    * @return The choosen game.
