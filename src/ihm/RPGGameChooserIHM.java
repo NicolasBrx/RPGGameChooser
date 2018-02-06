@@ -6,7 +6,9 @@
 package ihm;
 
 import game.Game;
+import java.net.URL;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import tools.XmlTool;
 
 
@@ -30,6 +32,12 @@ public class RPGGameChooserIHM extends javax.swing.JFrame {
       jcbbGameChoice.addItem(game);
     }
     
+    this.setTitle("RPG Game Chooser v.1.0.0");
+    URL iconURL = getClass().getResource("favicon.png");
+    ImageIcon icon = new ImageIcon(iconURL);
+    this.setIconImage(icon.getImage());
+    
+    this.setSize(324,100);
     
   }
 
@@ -50,7 +58,7 @@ public class RPGGameChooserIHM extends javax.swing.JFrame {
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setMaximumSize(new java.awt.Dimension(324, 274));
-    setMinimumSize(new java.awt.Dimension(324, 274));
+    setMinimumSize(new java.awt.Dimension(324, 72));
     setResizable(false);
 
     jbtnChoose.setText("Choose");
@@ -135,22 +143,41 @@ public class RPGGameChooserIHM extends javax.swing.JFrame {
 
   private void jcbbGameChoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbbGameChoiceActionPerformed
     if(!((String)jcbbGameChoice.getSelectedItem()).equalsIgnoreCase("")){
+      this.setSize(324,274);
       XmlTool xml = new XmlTool();
       if(jcbDescription.isSelected()){
         final String html1 = "<html><body style='width:225px'>";
         final String toDisplay = xml.getAllGames().get((String)jcbbGameChoice.getSelectedItem()).get(2);
         jlblDescription.setText(html1 + toDisplay);
       }
+      else{
+        this.setSize(324,100);
+        jlblDescription.setText("");
+      }
+    }
+    else{
+      this.setSize(324,100);
+      jlblDescription.setText("");
     }
   }//GEN-LAST:event_jcbbGameChoiceActionPerformed
 
   private void jcbDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbDescriptionActionPerformed
     if(!((String)jcbbGameChoice.getSelectedItem()).equalsIgnoreCase("")){
-      XmlTool xml = new XmlTool();
-      final String html1 = "<html><body style='width:225px'>";
-      final String toDisplay = xml.getAllGames().get((String)jcbbGameChoice.getSelectedItem()).get(2);
-      System.out.println(toDisplay);
-      jlblDescription.setText(html1 + toDisplay);
+      if(jcbDescription.isSelected()){
+        this.setSize(324,274);
+        XmlTool xml = new XmlTool();
+        final String html1 = "<html><body style='width:225px'>";
+        final String toDisplay = xml.getAllGames().get((String)jcbbGameChoice.getSelectedItem()).get(2);
+        jlblDescription.setText(html1 + toDisplay);
+      }
+      else{
+        this.setSize(324,100);
+        jlblDescription.setText("");
+      }
+    }
+    else{
+      this.setSize(324,100);
+      jlblDescription.setText("");
     }
   }//GEN-LAST:event_jcbDescriptionActionPerformed
 

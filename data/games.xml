@@ -9,4 +9,19 @@
     <short>SR</short>
     <description>Cyberpunk...</description>
   </game>
+  <game>
+    <name>Patient 13</name>
+    <short>P13</short>
+    <description>Huis Clos...</description>
+  </game>
+  <game>
+    <name>L'Appel de Cthulhu</name>
+    <short>AC</short>
+    <description>Horror Investigation...</description>
+  </game>
+  <game>
+    <name>Feng Shui</name>
+    <short>FS</short>
+    <description>Action...</description>
+  </game>
 </games>
