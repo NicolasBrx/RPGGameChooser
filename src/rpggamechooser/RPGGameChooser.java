@@ -12,7 +12,6 @@ import tools.XmlTool;
  * This plugin is dedicated to be used with the RPG whole software as a game
  * chooser for the user and the initialisation of the other plugns.
  * 
- * 
  * @author Nicolas Brax
  */
 public class RPGGameChooser {
@@ -55,8 +54,10 @@ public class RPGGameChooser {
   }
   
   /**
+   * Give an access to the IHM. Might be useful for integration in other
+   * projects.
    * 
-   * @return 
+   * @return A link to the RPG Game Chooser IHM.
    */
   public RPGGameChooserIHM getMainFrame(){
     return ihm;
