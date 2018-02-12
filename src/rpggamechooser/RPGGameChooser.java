@@ -54,6 +54,7 @@ public class RPGGameChooser {
   }
   
   /**
+<<<<<<< HEAD
    * Give an access to the IHM. Might be useful for integration in other
    * projects.
    * 
