@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.ImageIcon;
 
-
 /**
  * User Interface Class to handle the choice of a game in the RPG Software Suit.
  * It allows the user to select a game, see a quick description and set its
@@ -58,6 +57,25 @@ public class RPGGameChooserIHM extends javax.swing.JFrame {
     return this.choosenGame;
   }
 
+  public void displayInformation(){
+    if(!((String)jcbbGameChoice.getSelectedItem()).equalsIgnoreCase("")){
+      if(jcbDescription.isSelected()){
+        this.setSize(324,274);
+        final String html1 = "<html><body style='width:225px'>";
+        final String toDisplay = gameNames.get((String)jcbbGameChoice.getSelectedItem()).get(2);
+        jlblDescription.setText(html1 + toDisplay);
+      }
+      else{
+        this.setSize(324,100);
+        jlblDescription.setText("");
+      }
+    }
+    else{
+      this.setSize(324,100);
+      jlblDescription.setText("");
+    }
+  }
+  
   /**
    * This method is called from within the constructor to initialize the form.
    * WARNING: Do NOT modify this code. The content of this method is always
@@ -158,41 +176,11 @@ public class RPGGameChooserIHM extends javax.swing.JFrame {
   }//GEN-LAST:event_jbtnChooseActionPerformed
 
   private void jcbbGameChoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbbGameChoiceActionPerformed
-    if(!((String)jcbbGameChoice.getSelectedItem()).equalsIgnoreCase("")){
-      this.setSize(324,274);
-      if(jcbDescription.isSelected()){
-        final String html1 = "<html><body style='width:225px'>";
-        final String toDisplay = gameNames.get((String)jcbbGameChoice.getSelectedItem()).get(2);
-        jlblDescription.setText(html1 + toDisplay);
-      }
-      else{
-        this.setSize(324,100);
-        jlblDescription.setText("");
-      }
-    }
-    else{
-      this.setSize(324,100);
-      jlblDescription.setText("");
-    }
+    displayInformation();
   }//GEN-LAST:event_jcbbGameChoiceActionPerformed
 
   private void jcbDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbDescriptionActionPerformed
-    if(!((String)jcbbGameChoice.getSelectedItem()).equalsIgnoreCase("")){
-      if(jcbDescription.isSelected()){
-        this.setSize(324,274);
-        final String html1 = "<html><body style='width:225px'>";
-        final String toDisplay = gameNames.get((String)jcbbGameChoice.getSelectedItem()).get(2);
-        jlblDescription.setText(html1 + toDisplay);
-      }
-      else{
-        this.setSize(324,100);
-        jlblDescription.setText("");
-      }
-    }
-    else{
-      this.setSize(324,100);
-      jlblDescription.setText("");
-    }
+    displayInformation();
   }//GEN-LAST:event_jcbDescriptionActionPerformed
 
   /**
