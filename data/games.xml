@@ -29,4 +29,14 @@
     <short>Generic</short>
     <description>Can launch every combination under the form of XDY.</description>
   </game>
+  <game>
+    <name>COPS</name>
+    <short>COPS</short>
+    <description>A bit of cyberpunk with some future cops in California.</description>
+  </game>
+  <game>
+    <name>Seven Seas</name>
+    <short>7S</short>
+    <description>Rhum, women and pillages!.</description>
+  </game>
 </games>
